@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cardview1"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginEnd="5dp"
+    android:layout_marginStart="5dp"
+    android:layout_marginTop="10dp"
+    android:elevation="0dp"
+    card_view:cardBackgroundColor="@color/colorWhiteOpacity"
+    card_view:cardElevation="1dp"
+    card_view:cardMaxElevation="1dp"
+    card_view:contentPadding="1dp">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="160dp"
+        android:clickable="true"
+        card_view:cardBackgroundColor="@color/colorWhiteOpacity"
+        android:focusable="true">
+
+        <com.android.volley.toolbox.NetworkImageView
+            android:id="@+id/VolleyImageView"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="1dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:clickable="true"
+            android:src="@mipmap/ic_launcher" />
+
+        <TextView
+            android:id="@+id/eventNameTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/VolleyImageView"
+            android:layout_toEndOf="@+id/VolleyImageView"
+            android:layout_toRightOf="@+id/VolleyImageView"
+            android:allowUndo="false"
+            android:includeFontPadding="false"
+            android:textAppearance="@style/TextAppearance.AppCompat.Caption" />
+
+        <TextView
+            android:id="@+id/eventDateTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/eventNameTextView"
+            android:layout_marginTop="10dp"
+            android:layout_toEndOf="@+id/VolleyImageView"
+            android:layout_toRightOf="@+id/VolleyImageView"
+            android:textAppearance="@style/TextAppearance.AppCompat.Caption" />
+
+        <TextView
+            android:id="@+id/eventTimeTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/eventDateTextView"
+            android:layout_marginTop="10dp"
+            android:layout_toEndOf="@+id/VolleyImageView"
+            android:layout_toRightOf="@+id/VolleyImageView"
+            android:textAppearance="@style/TextAppearance.AppCompat.Caption" />
+
+        <TextView
+            android:id="@+id/eventCityTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/eventPriceTextView"
+            android:layout_marginTop="10dp"
+            android:layout_toEndOf="@+id/VolleyImageView"
+            android:layout_toRightOf="@+id/VolleyImageView"
+            android:textAppearance="@style/TextAppearance.AppCompat.Caption" />
+
+        <TextView
+            android:id="@+id/eventPriceTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/eventTimeTextView"
+            android:layout_marginTop="10dp"
+            android:layout_toEndOf="@+id/VolleyImageView"
+            android:layout_toRightOf="@+id/VolleyImageView"
+            android:textAppearance="@style/TextAppearance.AppCompat.Caption" />
+
+        <TextView
+            android:id="@+id/eventGenreTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_toEndOf="@+id/VolleyImageView"
+            android:layout_toRightOf="@+id/VolleyImageView"
+            android:textAppearance="@style/TextAppearance.AppCompat.Caption" />
+
+    </RelativeLayout>
+
+</android.support.v7.widget.CardView>

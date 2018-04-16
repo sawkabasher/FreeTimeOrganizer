@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="fto.ee.swk.freetimeorganizer.EventDetailsActivity"
+    tools:layout_editor_absoluteY="25dp">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:background="@color/colorWhite"
+        android:clickable="true"
+        android:focusable="true"
+        android:scrollIndicators="right"
+        android:scrollbarAlwaysDrawHorizontalTrack="true"
+        android:scrollbarSize="10dp"
+        android:scrollbarStyle="insideOverlay"
+        android:scrollbars="horizontal|vertical">
+
+        <com.android.volley.toolbox.NetworkImageView
+            android:id="@+id/VolleyImageView1"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginTop="16dp"
+            android:clickable="true"
+            android:scrollbarAlwaysDrawVerticalTrack="true"
+            android:scrollbars="vertical"
+            android:src="@mipmap/ic_launcher"
+            tools:layout_editor_absoluteX="30dp" />
+
+        <TextView
+            android:id="@+id/eventNameTextView1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/VolleyImageView1"
+            android:layout_toEndOf="@+id/VolleyImageView1"
+            android:includeFontPadding="false"
+            android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+            android:textIsSelectable="true"
+            android:layout_toRightOf="@+id/VolleyImageView1" />
+
+        <TextView
+            android:id="@+id/eventDateTextView1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/eventNameTextView1"
+            android:layout_marginTop="10dp"
+            android:layout_toEndOf="@+id/VolleyImageView1"
+            android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+            android:layout_toRightOf="@+id/VolleyImageView1" />
+
+        <TextView
+            android:id="@+id/eventTimeTextView1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/eventDateTextView1"
+            android:layout_marginTop="10dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Caption" />
+
+        <TextView
+            android:id="@+id/eventCityTextView1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/eventTimeTextView1"
+            android:layout_marginTop="10dp"
+            android:layout_toEndOf="@+id/VolleyImageView1"
+            android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+            android:layout_toRightOf="@+id/VolleyImageView1" />
+
+        <TextView
+            android:id="@+id/eventDescriptionTextView1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/VolleyImageView1"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Caption" />
+
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/eventDescriptionTextView1"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:text="Get Tickets / GO TO WEBSITE" />
+
+    </RelativeLayout>
+
+</android.support.constraint.ConstraintLayout>
