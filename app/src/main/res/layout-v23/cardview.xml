@@ -17,7 +17,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="160dp"
+        android:layout_height="wrap_content"
         android:background="@color/colorWhiteOpacity"
         android:clickable="true"
         android:focusable="true">
@@ -42,7 +42,7 @@
             android:layout_toRightOf="@+id/VolleyImageView"
             android:allowUndo="false"
             android:includeFontPadding="false"
-            android:textAppearance="@style/TextAppearance.AppCompat.Caption" />
+            android:textStyle="italic|bold" />
 
         <TextView
             android:id="@+id/eventDateTextView"
@@ -88,7 +88,8 @@
             android:id="@+id/eventGenreTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
+            android:layout_below="@+id/eventCityTextView"
+            android:layout_marginTop="10dp"
             android:layout_toEndOf="@+id/VolleyImageView"
             android:layout_toRightOf="@+id/VolleyImageView"
             android:textAppearance="@style/TextAppearance.AppCompat.Caption" />

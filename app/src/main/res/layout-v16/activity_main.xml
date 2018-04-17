@@ -22,7 +22,7 @@
         android:layout_height="63dp"
         android:layout_marginTop="16dp"
         android:fontFamily="sans-serif"
-        android:text="@string/loading"
+        android:text="Loading..."
         android:textAllCaps="false"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
         android:textColor="@color/colorAccent"
@@ -33,4 +33,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
 </android.support.constraint.ConstraintLayout>

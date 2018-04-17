@@ -42,7 +42,7 @@
             android:layout_toRightOf="@+id/VolleyImageView"
             android:allowUndo="false"
             android:includeFontPadding="false"
-            android:textAppearance="@style/TextAppearance.AppCompat.Caption" />
+            android:textStyle="italic|bold" />
 
         <TextView
             android:id="@+id/eventDateTextView"

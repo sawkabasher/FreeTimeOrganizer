@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="none">
+        <item android:title="Genre">
+            <menu>
+                <item
+                    android:id="@+id/nav_genre_all"
+                    android:icon="@drawable/wishlist"
+                    android:title="All" />
+                <item
+                    android:id="@+id/nav_genre_music"
+                    android:checked="true"
+                    android:icon="@drawable/saxophon"
+                    android:title="Music"
+                    app:showAsAction="collapseActionView" />
+                <item android:checked="true"
+                    android:id="@+id/nav_genre_family"
+                    android:checkableBehavior="none"
+                    android:icon="@drawable/family"
+                    android:title="Family" />
+                <item android:checked="true"
+                    android:id="@+id/nav_genre_theater"
+                    android:icon="@drawable/masks"
+                    android:title="Theater" />
+                <item android:checked="true"
+                    android:id="@+id/nav_genre_sport"
+                    android:icon="@drawable/footballball"
+                    android:title="Sport" />
+                <item android:checked="true"
+                    android:id="@+id/nav_genre_film"
+                    android:icon="@drawable/clapperboard"
+                    android:title="Film" />
+                <item android:checked="true"
+                    android:id="@+id/nav_genre_festival"
+                    android:icon="@drawable/confetti"
+                    android:title="Festival" />
+                <item android:checked="true"
+                    android:id="@+id/nav_genre_other"
+                    android:icon="@drawable/garbage"
+                    android:title="Other" />
+                <item
+                    android:id="@+id/nav_genre_random"
+                    android:icon="@drawable/random"
+                    android:title="RANDOM" />
+
+            </menu>
+        </item>
+
+    </group>
+    <item android:title="Sub items">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:icon="@mipmap/ic_launcher_round"
+                    android:title="Report an Error"
+                    android:checkable="false"/>
+                <item
+                    android:icon="@mipmap/ic_launcher_round"
+                    android:title="Contact Us"
+                    android:checkable="false"/>
+                <item
+                    android:icon="@mipmap/ic_launcher_round"
+                    android:title="Rate Us"
+                    android:checkable="false"/>
+            </group>
+        </menu>
+    </item>
+</menu>

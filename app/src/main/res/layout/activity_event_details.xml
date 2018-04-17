@@ -39,7 +39,8 @@
             android:includeFontPadding="false"
             android:textAppearance="@style/TextAppearance.AppCompat.Caption"
             android:textIsSelectable="true"
-            android:layout_toRightOf="@+id/VolleyImageView1" />
+            android:layout_toRightOf="@+id/VolleyImageView1"
+            android:textStyle="italic|bold"/>
 
         <TextView
             android:id="@+id/eventDateTextView1"

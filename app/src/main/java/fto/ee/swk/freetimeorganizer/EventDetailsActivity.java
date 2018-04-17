@@ -21,7 +21,9 @@ public class EventDetailsActivity extends AppCompatActivity {
         TextView eventDateTextView1 = (TextView) findViewById(R.id.eventDateTextView1);
         TextView eventTimeTextView1 = (TextView) findViewById(R.id.eventTimeTextView1);
         TextView eventCityTextView1 = (TextView) findViewById(R.id.eventCityTextView1);
-        TextView eventDescriptionTextView1 = (TextView) findViewById(R.id.eventDescriptionTextView1);
+        TextView eventPriceTextView1 = (TextView) findViewById(R.id.eventPriceTextView1);
+        final TextView eventDescriptionTextView1 = (TextView) findViewById(R.id.eventDescriptionTextView1);
+        final TextView showAll = (TextView) findViewById(R.id.detail_read_all);
         NetworkImageView VolleyImageView1 = (NetworkImageView) findViewById(R.id.VolleyImageView1);
         Button getTicketsButton = (Button)findViewById(R.id.button2);
         //eventInfoTextView1
@@ -34,15 +36,24 @@ public class EventDetailsActivity extends AppCompatActivity {
             eventNameTextView1.setText(array[0]);
             eventDateTextView1.setText(array[1]);
             eventDateTextView1.append(" - " + array[2].replace("-", "."));
-            eventTimeTextView1.setText(array[3]);
-            eventCityTextView1.setText(array[4]+ ", ");
+            eventTimeTextView1.setText("Time: " + array[3]);
+            eventCityTextView1.setText(array[4] + ", ");
             if (!array[5].equals("null") && !array[5].equals("Estonia  ")) {
                 eventCityTextView1.append(array[5] + ", ");
                 eventCityTextView1.append(array[6]);
             } else {
-                eventCityTextView1.setText(array[6]);
+                eventCityTextView1.append(array[6]);
             }
-            eventDescriptionTextView1.setText(array[12]);
+
+            if(array[11].equals("")){
+                eventPriceTextView1.setText("Price: FREE / unknown" );
+            }else {
+                eventPriceTextView1.setText("Price: " + array[11] + " €");
+            }
+
+
+
+            eventDescriptionTextView1.setText("--Tap here to expand!-- \n" + array[12]);
             VolleyImageView1.setImageUrl(array[10], RecyclerViewAdapter.getImageLoader());
 
 /*
@@ -80,5 +91,14 @@ getEventDescription(), // INDEX 12
 
             //The key argument here must match that used in the other activity
         }*/
+
+        showAll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showAll.setVisibility(View.INVISIBLE);
+                eventDescriptionTextView1.setMaxLines(Integer.MAX_VALUE);
+            }
+        });
     }
+
 }

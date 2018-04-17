@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -11,13 +11,13 @@
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:background="@color/colorWhiteOpacity"
-        android:clickable="true"
+        android:clickable="false"
         android:focusable="true"
         android:scrollIndicators="right"
         android:scrollbarAlwaysDrawHorizontalTrack="true"
         android:scrollbarSize="10dp"
         android:scrollbarStyle="insideOverlay"
-        android:scrollbars="horizontal|vertical">
+        android:scrollbars="vertical">
 
         <com.android.volley.toolbox.NetworkImageView
             android:id="@+id/VolleyImageView1"
@@ -35,9 +35,10 @@
             android:layout_height="wrap_content"
             android:layout_alignTop="@+id/VolleyImageView1"
             android:layout_toEndOf="@+id/VolleyImageView1"
+            android:layout_toRightOf="@+id/VolleyImageView1"
+            android:allowUndo="false"
             android:includeFontPadding="false"
-            android:textAppearance="@style/TextAppearance.AppCompat.Caption"
-            android:textIsSelectable="true" />
+            android:textStyle="italic|bold" />
 
         <TextView
             android:id="@+id/eventDateTextView1"
@@ -46,6 +47,7 @@
             android:layout_below="@+id/eventNameTextView1"
             android:layout_marginTop="10dp"
             android:layout_toEndOf="@+id/VolleyImageView1"
+            android:layout_toRightOf="@+id/VolleyImageView1"
             android:textAppearance="@style/TextAppearance.AppCompat.Caption" />
 
         <TextView
@@ -55,19 +57,32 @@
             android:layout_below="@+id/eventDateTextView1"
             android:layout_marginTop="10dp"
             android:layout_toEndOf="@+id/VolleyImageView1"
+            android:layout_toRightOf="@+id/VolleyImageView1"
             android:textAppearance="@style/TextAppearance.AppCompat.Caption" />
 
         <TextView
             android:id="@+id/eventCityTextView1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/eventPriceTextView1"
+            android:layout_marginTop="10dp"
+            android:layout_toEndOf="@+id/VolleyImageView1"
+            android:layout_toRightOf="@+id/VolleyImageView1"
+            android:textAppearance="@style/TextAppearance.AppCompat.Caption" />
+
+        <TextView
+            android:id="@+id/eventPriceTextView1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_below="@+id/eventTimeTextView1"
             android:layout_marginTop="10dp"
             android:layout_toEndOf="@+id/VolleyImageView1"
+            android:layout_toRightOf="@+id/VolleyImageView1"
             android:textAppearance="@style/TextAppearance.AppCompat.Caption" />
 
         <TextView
             android:id="@+id/eventDescriptionTextView1"
+            android:maxLines="20"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/VolleyImageView1"
@@ -76,6 +91,17 @@
             android:layout_marginRight="10dp"
             android:layout_marginTop="10dp"
             android:textAppearance="@style/TextAppearance.AppCompat.Caption" />
+
+        <TextView
+            android:id="@+id/detail_read_all"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/VolleyImageView1"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:clickable="true"/>
 
         <Button
             android:id="@+id/button2"
@@ -88,4 +114,4 @@
 
     </RelativeLayout>
 
-</android.support.constraint.ConstraintLayout>
+</ScrollView>
