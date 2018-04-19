@@ -41,9 +41,7 @@ import java.util.Objects;
 
 public class HomeActivity extends AppCompatActivity {
     String[] data = {"All","music","family","theater","sport","film","festival","other","RANDOM"};
-
     public List<DataAdapter> ListOfdataAdapter;
-
     RecyclerView recyclerView;
     String HTTP_JSON_URL = "https://fto.ee/api/v1/events";
     final String Event_Id_JSON = "id";
@@ -60,11 +58,9 @@ public class HomeActivity extends AppCompatActivity {
     final String Image_URL_JSON = "img";
     final String Event_Price_JSON = "price";
     final String Event_Description_JSON = "des";
-
     private DrawerLayout mDrawer;
     private Toolbar toolbar;
     private NavigationView nvDrawer;
-
     JsonArrayRequest RequestOfJSonArray;
     RequestQueue requestQueue;
     View view;
@@ -78,36 +74,34 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-
-        //////////////////////////////
+//////////////////////////////
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         mDrawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        // Найти наш view drawer'а
+// Найти наш view drawer'а
         nvDrawer = (NavigationView) findViewById(R.id.nvView);
         setupDrawerContent(nvDrawer);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, mDrawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         mDrawer.addDrawerListener(toggle);
         toggle.syncState();
-        /////////////////////////////
-        EventDataHold = new ArrayList<JSONObject>();
+/////////////////////////////
 
+        EventDataHold = new ArrayList<>();
         ListOfdataAdapter = new ArrayList<>();
         recyclerView = (RecyclerView) findViewById(R.id.recyclerview1);
         recyclerView.setHasFixedSize(true);
         layoutManagerOfrecyclerView = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManagerOfrecyclerView);
         JSON_HTTP_CALL();
-
-        // Pull to refresh
+// Pull to refresh
         swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipeRefreshLayout);
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                // cancel the Visual indication of a refresh
-                swipeRefreshLayout.setRefreshing(false);
-                JSON_HTTP_CALL();
+        @Override
+        public void onRefresh() {
+// cancel the Visual indication of a refresh
+        swipeRefreshLayout.setRefreshing(false);
+        JSON_HTTP_CALL();
             }
         });
 
@@ -142,6 +136,7 @@ public class HomeActivity extends AppCompatActivity {
                                 ListOfdataAdapter.get(RecyclerViewItemPosition).getEventImageURL(),    // INDEX 10
                                 ListOfdataAdapter.get(RecyclerViewItemPosition).getEventPrice(),       // INDEX 11
                                 ListOfdataAdapter.get(RecyclerViewItemPosition).getEventDescription(), // INDEX 12
+                                ListOfdataAdapter.get(RecyclerViewItemPosition).getEventID()           // INDEX 13
                         });
                     intent.putExtras(b);
 ///*
@@ -256,15 +251,6 @@ public class HomeActivity extends AppCompatActivity {
                                 navigationView.getMenu().getItem(0).setChecked(true);
 
                         }
-//
-//                                break;
-//                            case R.id.nav_calendar:
-//                                navigationView.getMenu().performIdentifierAction(R.id.nav_today, 0);
-//                                navigationView.getMenu().getItem(0).setChecked(true);//or
-//                                navigationView.setCheckedItem(R.id.nav_today);//or
-//                                drawerLayout.closeDrawers();
-//                                break;
-//                        }
                         return true;
                     }
                 });
@@ -389,19 +375,6 @@ Log.e("asd", HTTP_JSON_URL);
         }
     }
 
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        // Действие home/up action bar'а должно открывать или закрывать drawer.
-//        switch (item.getItemId()) {
-//            case android.R.id.home:
-//                mDrawer.openDrawer(GravityCompat.START);
-//                return true;
-//        }
-//
-//        return super.onOptionsItemSelected(item);
-//    }
-
-
     public void JSON_HTTP_CALL() {
         RequestOfJSonArray = new JsonArrayRequest(HTTP_JSON_URL,
                 new Response.Listener<JSONArray>() {
@@ -424,13 +397,12 @@ Log.e("asd", HTTP_JSON_URL);
     }
 
     public void ParseJSonResponse(JSONArray array) {
-
         for (int i = 0; i < array.length(); i++) {
             DataAdapter GetDataAdapter2 = new DataAdapter();
             JSONObject json = null;
             try {
                 json = array.getJSONObject(i);
-                GetDataAdapter2.setEventID(json.getString(Event_Name_JSON));
+                GetDataAdapter2.setEventID(json.getString(Event_Id_JSON));
                 GetDataAdapter2.setEventName(json.getString(Event_Name_JSON));
                 GetDataAdapter2.setEventDate(json.getString(Event_Date_JSON));
                 GetDataAdapter2.setEventEndDate(json.getString(Event_End_Date_JSON));

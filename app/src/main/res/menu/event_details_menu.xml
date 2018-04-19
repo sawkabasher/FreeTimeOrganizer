@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/share"
+        android:actionProviderClass="android.widget.ShareActionProvider"
+        android:icon="@android:drawable/ic_menu_share"
+        android:title="Share"
+        app:showAsAction="always" />
+
+    <item android:id="@+id/report_a_bug"
+        android:icon="@drawable/bug"
+        android:title="@string/reportabug"/>
+
+    <item android:id="@+id/help"
+        android:icon="@drawable/help"
+        android:title="@string/help" />
+</menu>

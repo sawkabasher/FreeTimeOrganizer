@@ -1,117 +1,127 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="fto.ee.swk.freetimeorganizer.EventDetailsActivity"
-    tools:layout_editor_absoluteY="25dp">
+    tools:context="fto.ee.swk.freetimeorganizer.EventDetailsActivity">
 
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:background="@color/colorWhiteOpacity"
-        android:clickable="false"
-        android:focusable="true"
-        android:scrollIndicators="right"
-        android:scrollbarAlwaysDrawHorizontalTrack="true"
-        android:scrollbarSize="10dp"
-        android:scrollbarStyle="insideOverlay"
-        android:scrollbars="vertical">
+    <include
+        android:id="@+id/include"
+        layout="@layout/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
-        <com.android.volley.toolbox.NetworkImageView
-            android:id="@+id/VolleyImageView1"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:layout_marginTop="16dp"
-            android:scrollbarAlwaysDrawVerticalTrack="true"
-            android:scrollbars="vertical"
-            android:src="@mipmap/ic_launcher"
-            tools:layout_editor_absoluteX="30dp" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/include">
 
-        <TextView
-            android:id="@+id/eventNameTextView1"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/VolleyImageView1"
-            android:layout_toEndOf="@+id/VolleyImageView1"
-            android:layout_toRightOf="@+id/VolleyImageView1"
-            android:allowUndo="false"
-            android:includeFontPadding="false"
-            android:textStyle="italic|bold" />
+            android:layout_height="match_parent"
+            tools:ignore="Orientation">
 
-        <TextView
-            android:id="@+id/eventDateTextView1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/eventNameTextView1"
-            android:layout_marginTop="10dp"
-            android:layout_toEndOf="@+id/VolleyImageView1"
-            android:layout_toRightOf="@+id/VolleyImageView1"
-            android:textAppearance="@style/TextAppearance.AppCompat.Caption" />
+            <com.android.volley.toolbox.NetworkImageView
+                android:id="@+id/VolleyImageView1"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:scrollbarAlwaysDrawVerticalTrack="true"
+                android:scrollbars="vertical"
+                android:src="@mipmap/ic_launcher"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:layout_editor_absoluteY="25dp" />
 
-        <TextView
-            android:id="@+id/eventTimeTextView1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/eventDateTextView1"
-            android:layout_marginTop="10dp"
-            android:layout_toEndOf="@+id/VolleyImageView1"
-            android:layout_toRightOf="@+id/VolleyImageView1"
-            android:textAppearance="@style/TextAppearance.AppCompat.Caption" />
+            <TextView
+                android:id="@+id/eventNameTextView1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/VolleyImageView1"
+                android:layout_marginTop="8dp"
+                android:layout_toEndOf="@+id/VolleyImageView1"
+                android:layout_toRightOf="@+id/VolleyImageView1"
+                android:allowUndo="false"
+                android:includeFontPadding="false"
+                android:textStyle="italic|bold"
+                app:layout_constraintTop_toBottomOf="@+id/VolleyImageView1" />
 
-        <TextView
-            android:id="@+id/eventCityTextView1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/eventPriceTextView1"
-            android:layout_marginTop="10dp"
-            android:layout_toEndOf="@+id/VolleyImageView1"
-            android:layout_toRightOf="@+id/VolleyImageView1"
-            android:textAppearance="@style/TextAppearance.AppCompat.Caption" />
+            <TextView
+                android:id="@+id/eventDateTextView1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/eventNameTextView1"
+                android:layout_marginTop="8dp"
+                android:layout_toEndOf="@+id/VolleyImageView1"
+                android:layout_toRightOf="@+id/VolleyImageView1"
+                android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/eventNameTextView1" />
 
-        <TextView
-            android:id="@+id/eventPriceTextView1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/eventTimeTextView1"
-            android:layout_marginTop="10dp"
-            android:layout_toEndOf="@+id/VolleyImageView1"
-            android:layout_toRightOf="@+id/VolleyImageView1"
-            android:textAppearance="@style/TextAppearance.AppCompat.Caption" />
+            <TextView
+                android:id="@+id/eventTimeTextView1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/eventDateTextView1"
+                android:layout_marginTop="8dp"
+                android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+                app:layout_constraintTop_toBottomOf="@+id/eventDateTextView1"
+                tools:layout_editor_absoluteX="0dp" />
 
-        <TextView
-            android:id="@+id/eventDescriptionTextView1"
-            android:maxLines="20"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/VolleyImageView1"
-            android:layout_centerHorizontal="true"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="10dp"
-            android:textAppearance="@style/TextAppearance.AppCompat.Caption" />
+            <TextView
+                android:id="@+id/eventCityTextView1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/eventPriceTextView1"
+                android:layout_marginTop="8dp"
+                android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+                app:layout_constraintTop_toBottomOf="@+id/eventTimeTextView1" />
 
-        <TextView
-            android:id="@+id/detail_read_all"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/VolleyImageView1"
-            android:layout_centerHorizontal="true"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="10dp"
-            android:clickable="true"/>
+            <TextView
+                android:id="@+id/eventPriceTextView1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/eventTimeTextView1"
+                android:layout_marginTop="8dp"
+                android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+                app:layout_constraintTop_toBottomOf="@+id/eventCityTextView1"
+                tools:layout_editor_absoluteX="0dp" />
 
-        <Button
-            android:id="@+id/button2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/eventDescriptionTextView1"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="10dp"
-            android:text="Get Tickets / GO TO WEBSITE" />
+            <TextView
+                android:id="@+id/eventDescriptionTextView1"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_below="@+id/VolleyImageView1"
+                android:layout_centerHorizontal="true"
+                android:layout_marginEnd="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.501"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/eventPriceTextView1" />
 
-    </RelativeLayout>
+            <Button
+                android:id="@+id/button2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/eventDescriptionTextView1"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="16dp"
+                android:text="Get Tickets / GO TO WEBSITE"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+        </LinearLayout>
 
-</ScrollView>
+    </ScrollView>
+
+
+</android.support.constraint.ConstraintLayout>
