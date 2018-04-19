@@ -7,15 +7,18 @@
     <item
         android:id="@+id/share"
         android:actionProviderClass="android.widget.ShareActionProvider"
-        android:icon="@android:drawable/ic_menu_share"
+        android:icon="@drawable/ic_share"
         android:title="Share"
-        app:showAsAction="always" />
+        app:showAsAction="always"
+         />
 
     <item android:id="@+id/report_a_bug"
-        android:icon="@drawable/bug"
-        android:title="@string/reportabug"/>
+        android:icon="@drawable/ic_bug"
+        android:title="@string/reportabug"
+        app:showAsAction="always" />
 
-    <item android:id="@+id/help"
-        android:icon="@drawable/help"
-        android:title="@string/help" />
+    <item android:id="@+id/add_event"
+        android:icon="@drawable/ic_add"
+        android:title="@string/addEventToCalendar"
+        app:showAsAction="always"/>
 </menu>
