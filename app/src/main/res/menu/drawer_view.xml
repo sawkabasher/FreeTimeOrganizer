@@ -5,66 +5,52 @@
     tools:showIn="navigation_view">
 
     <group android:checkableBehavior="none">
-        <item android:title="Genre">
+        <item android:title="General">
             <menu>
                 <item
-                    android:id="@+id/nav_genre_all"
-                    android:icon="@drawable/wishlist"
-                    android:title="All" />
-                <item
-                    android:id="@+id/nav_genre_music"
-                    android:checked="true"
+                    android:id="@+id/nav_find"
                     android:icon="@drawable/saxophon"
-                    android:title="Music"
-                    app:showAsAction="collapseActionView" />
-                <item android:checked="true"
-                    android:id="@+id/nav_genre_family"
-                    android:checkableBehavior="none"
-                    android:icon="@drawable/family"
-                    android:title="Family" />
-                <item android:checked="true"
-                    android:id="@+id/nav_genre_theater"
-                    android:icon="@drawable/masks"
-                    android:title="Theater" />
-                <item android:checked="true"
-                    android:id="@+id/nav_genre_sport"
-                    android:icon="@drawable/footballball"
-                    android:title="Sport" />
-                <item android:checked="true"
-                    android:id="@+id/nav_genre_film"
-                    android:icon="@drawable/clapperboard"
-                    android:title="Film" />
-                <item android:checked="true"
-                    android:id="@+id/nav_genre_festival"
-                    android:icon="@drawable/confetti"
-                    android:title="Festival" />
-                <item android:checked="true"
-                    android:id="@+id/nav_genre_other"
-                    android:icon="@drawable/garbage"
-                    android:title="Other" />
+                    android:title="Genre" />
                 <item
-                    android:id="@+id/nav_genre_random"
+                    android:id="@+id/nav_location"
+                    android:icon="@drawable/ic_location"
+                    android:title="Location" />
+                <item
+                    android:id="@+id/nav_time"
+                    android:icon="@drawable/ic_clock"
+                    android:title="Time" />
+                <item
+                    android:id="@+id/nav_liked"
+                    android:icon="@drawable/wishlist"
+                    android:title="Liked" />
+                <item
+                    android:id="@+id/nav_random"
                     android:icon="@drawable/random"
-                    android:title="RANDOM" />
+                    android:title="Random" />
+
 
             </menu>
         </item>
 
     </group>
-    <item android:title="Sub items">
+    <item android:title="@string/extras_string">
         <menu>
-            <group android:checkableBehavior="single">
+            <group>
                 <item
-                    android:icon="@mipmap/ic_launcher_round"
-                    android:title="Report an Error"
+                    android:icon="@drawable/ic_mail"
+                    android:title="@string/contact_us"
                     android:checkable="false"/>
                 <item
-                    android:icon="@mipmap/ic_launcher_round"
-                    android:title="Contact Us"
+                    android:icon="@drawable/ic_info"
+                    android:title="@string/about_us"
                     android:checkable="false"/>
                 <item
-                    android:icon="@mipmap/ic_launcher_round"
-                    android:title="Rate Us"
+                    android:icon="@drawable/ic_star"
+                    android:title="@string/rate_us"
+                    android:checkable="false"/>
+                <item
+                    android:icon="@drawable/ic_close"
+                    android:title="@string/quit"
                     android:checkable="false"/>
             </group>
         </menu>

@@ -2,28 +2,20 @@ package fto.ee.swk.freetimeorganizer;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.GestureDetector;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemSelectedListener;
-import android.widget.ArrayAdapter;
-import android.widget.Spinner;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -37,10 +29,8 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 public class HomeActivity extends AppCompatActivity {
-    String[] data = {"All","music","family","theater","sport","film","festival","other","RANDOM"};
     public List<DataAdapter> ListOfdataAdapter;
     RecyclerView recyclerView;
     String HTTP_JSON_URL = "https://fto.ee/api/v1/events";
@@ -70,22 +60,29 @@ public class HomeActivity extends AppCompatActivity {
     ArrayList<JSONObject> EventDataHold;
     SwipeRefreshLayout swipeRefreshLayout;
 
+
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1) {
+            if(resultCode == RESULT_OK) {
+                HTTP_JSON_URL = data.getStringExtra("url");
+                JSON_HTTP_CALL(HTTP_JSON_URL);
+            }
+        }
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
-//////////////////////////////
+        setContentView(R.layout.drawer_layout);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
         mDrawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-// Найти наш view drawer'а
-        nvDrawer = (NavigationView) findViewById(R.id.nvView);
-        setupDrawerContent(nvDrawer);
+        nvDrawer = (NavigationView) findViewById(R.id.nav_view);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, mDrawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        setupDrawerContent(nvDrawer);
         mDrawer.addDrawerListener(toggle);
         toggle.syncState();
-/////////////////////////////
 
         EventDataHold = new ArrayList<>();
         ListOfdataAdapter = new ArrayList<>();
@@ -93,7 +90,8 @@ public class HomeActivity extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         layoutManagerOfrecyclerView = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManagerOfrecyclerView);
-        JSON_HTTP_CALL();
+        JSON_HTTP_CALL(HTTP_JSON_URL);
+
 // Pull to refresh
         swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipeRefreshLayout);
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -101,7 +99,7 @@ public class HomeActivity extends AppCompatActivity {
         public void onRefresh() {
 // cancel the Visual indication of a refresh
         swipeRefreshLayout.setRefreshing(false);
-        JSON_HTTP_CALL();
+        JSON_HTTP_CALL(HTTP_JSON_URL);
             }
         });
 
@@ -139,22 +137,7 @@ public class HomeActivity extends AppCompatActivity {
                                 ListOfdataAdapter.get(RecyclerViewItemPosition).getEventID()           // INDEX 13
                         });
                     intent.putExtras(b);
-///*
-//EventName;
-//EventDate;
-//EventEndDate;
-//EventTime;
-//EventLocation;
-//EventCity;
-//EventCountry;
-//EventGenre;
-//EventInfo;
-//EventLink;
-//EventImageURL;
-//EventPrice;
-//EventID;
-//EventDescription;
-//*/
+
                     startActivity(intent);
                 }
                 return false;
@@ -168,61 +151,11 @@ public class HomeActivity extends AppCompatActivity {
             }
 
         });
-//        // адаптер
-//        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, data);
-//        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//
-//        Spinner spinner = (Spinner) findViewById(R.id.spinner);
-//        spinner.setAdapter(adapter);
-//        spinner.setPrompt("Genre");
-//        spinner.setOnItemSelectedListener(new OnItemSelectedListener() {
-//            @Override
-//            public void onItemSelected(AdapterView<?> parent, View view,
-//                                       int position, long id) {
-//                switch (position) {
-//                    case 0:
-//                        HTTP_JSON_URL = "https://fto.ee/api/v1/events";
-//                        break;
-//                    case 1:
-//                        HTTP_JSON_URL = "https://fto.ee/api/v1/events/genre/1";
-//                        break;
-//                    case 2:
-//                        HTTP_JSON_URL = "https://fto.ee/api/v1/events/genre/3";
-//                        break;
-//                    case 3:
-//                        HTTP_JSON_URL = "https://fto.ee/api/v1/events/genre/2";
-//                        break;
-//                    case 4:
-//                        HTTP_JSON_URL = "https://fto.ee/api/v1/events/genre/4";
-//                        break;
-//                    case 5:
-//                        HTTP_JSON_URL = "https://fto.ee/api/v1/events/genre/6";
-//                        break;
-//                    case 6:
-//                        HTTP_JSON_URL = "https://fto.ee/api/v1/events/genre/5";
-//                        break;
-//                    case 7:
-//                        HTTP_JSON_URL = "https://fto.ee/api/v1/events/genre/0";
-//                        break;
-//                    case 8:
-//                        HTTP_JSON_URL = "https://fto.ee/api/v1/events/random";
-//                        break;
-//
-//                }
-//                JSON_HTTP_CALL();
-//
-//            }
-//
-//            @Override
-//            public void onNothingSelected(AdapterView<?> arg0) {
-//            }
-//        });
 
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Действие home/up action bar'а должно открывать или закрывать drawer.
         switch (item.getItemId()) {
             case android.R.id.home:
                 mDrawer.openDrawer(GravityCompat.START);
@@ -237,146 +170,46 @@ public class HomeActivity extends AppCompatActivity {
                 new NavigationView.OnNavigationItemSelectedListener() {
                     @Override
                     public boolean onNavigationItemSelected(MenuItem menuItem) {
-                        selectDrawerItem(menuItem);
-                        switch (menuItem.getItemId()) {
-                            case R.id.nav_genre_all:
-                                navigationView.getMenu().performIdentifierAction(R.id.nav_genre_family, 0);
-                                navigationView.getMenu().performIdentifierAction(R.id.nav_genre_sport, 0);
-                                navigationView.getMenu().performIdentifierAction(R.id.nav_genre_film, 0);
-                                navigationView.getMenu().performIdentifierAction(R.id.nav_genre_festival, 0);
-                                navigationView.getMenu().performIdentifierAction(R.id.nav_genre_other, 0);
-                                navigationView.getMenu().performIdentifierAction(R.id.nav_genre_music, 0);
-                                navigationView.getMenu().performIdentifierAction(R.id.nav_genre_theater, 0);
+                        switch(menuItem.getItemId()) {
+                            case R.id.nav_find:
+                                Intent settingsIntent = new Intent(HomeActivity.this, SettingsActivity.class);
+                                startActivityForResult(settingsIntent,1);
+                                mDrawer.closeDrawers();
+                                break;
+                            case R.id.nav_location:
 
-                                navigationView.getMenu().getItem(0).setChecked(true);
+                                break;
+                            case R.id.nav_time:
+
+                                break;
+                            case R.id.nav_liked:
+                                break;
+                            case R.id.nav_random:
+                                HTTP_JSON_URL = "https://fto.ee/api/v1/events/random";
+                                JSON_HTTP_CALL(HTTP_JSON_URL);
+                                mDrawer.closeDrawers();
+                                break;
 
                         }
                         return true;
                     }
                 });
-    }
-    String link = "https://fto.ee/api/v1/events/genre/1/2/3/4/5/6/0";
-    public void selectDrawerItem(MenuItem menuItem) {
-
-        switch(menuItem.getItemId()) {
-            case R.id.nav_genre_all:
-                    link = "https://fto.ee/api/v1/events/genre";
-                    HTTP_JSON_URL = link;
-                    break;
-            case R.id.nav_genre_music:
-                if (menuItem.isChecked()){
-                    menuItem.setChecked(false);
-                    link = link.replaceAll("/1","");
-                    HTTP_JSON_URL = link;
-                } else {
-                    menuItem.setChecked(true);
-
-                    link += "/1";
-                    HTTP_JSON_URL = link;
-                }
-                break;
-            case R.id.nav_genre_family:
-                if (menuItem.isChecked()){
-                    menuItem.setChecked(false);
-                    link = link.replaceAll("/3","");
-                    HTTP_JSON_URL = link;
-                } else {
-                    menuItem.setChecked(true);
-                    link += "/3";
-                    HTTP_JSON_URL = link;
-                }
-                break;
-            case R.id.nav_genre_theater:
-                if (menuItem.isChecked()){
-                    menuItem.setChecked(false);
-                    link = link.replaceAll("/2","");
-                    HTTP_JSON_URL = link;
-                } else {
-                    menuItem.setChecked(true);
-                    link += "/2";
-                    HTTP_JSON_URL = link;
-                }
-                break;
-            case R.id.nav_genre_sport:
-                if (menuItem.isChecked()){
-                    menuItem.setChecked(false);
-                    link = link.replaceAll("/4","");
-                    HTTP_JSON_URL = link;
-                } else {
-                    menuItem.setChecked(true);
-                    link += "/4";
-                    HTTP_JSON_URL = link;
-                }
-                break;
-            case R.id.nav_genre_film:
-                if (menuItem.isChecked()){
-                    menuItem.setChecked(false);
-                    link = link.replaceAll("/6","");
-                    HTTP_JSON_URL = link;
-                } else {
-                    menuItem.setChecked(true);
-                    link += "/6";
-                    HTTP_JSON_URL = link;
-                }
-                break;
-            case R.id.nav_genre_festival:
-                if (menuItem.isChecked()){
-                    menuItem.setChecked(false);
-                    link = link.replaceAll("/5","");
-                    HTTP_JSON_URL = link;
-                } else {
-                    menuItem.setChecked(true);
-                    link += "/5";
-                    HTTP_JSON_URL = link;
-                }
-                break;
-            case R.id.nav_genre_other:
-                if (menuItem.isChecked()){
-                    menuItem.setChecked(false);
-                    link = link.replaceAll("/0","");
-                    HTTP_JSON_URL = link;
-                } else {
-                    menuItem.setChecked(true);
-                    link += "/0";
-                    HTTP_JSON_URL = link;
-                }
-                break;
-            case R.id.nav_genre_random:
-                HTTP_JSON_URL = "https://fto.ee/api/v1/events/random";
-                unCheckAllMenuItems(nvDrawer.getMenu());
-                link = "https://fto.ee/api/v1/events/genre";
-                mDrawer.closeDrawers();
-                break;
-        }
         // Выделение существующего элемента выполнено с помощью
-        // NavigationView
-//        if (menuItem.isChecked()){
-//            menuItem.setChecked(false);
-//        } else menuItem.setChecked(true);
-Log.e("asd", HTTP_JSON_URL);
-        JSON_HTTP_CALL();
+// NavigationView
+        //        if (menuItem.isChecked()){
+        //            menuItem.setChecked(false);
+        //        } else menuItem.setChecked(true);
+//Log.e("asd", HTTP_JSON_URL);
         // Установить заголовок для action bar'а
 //        setTitle(menuItem.getTitle());
-        // Закрыть navigation drawer
-        // TODO
+        // TODO --- nothing special, just note for myself.  mDrawer.closeDrawers();  Закрыть navigation drawer
 //        mDrawer.closeDrawers();
-
-    }
-    private void unCheckAllMenuItems(@NonNull final Menu menu) {
-        int size = menu.size();
-        for (int i = 0; i < size; i++) {
-            final MenuItem item = menu.getItem(i);
-            if(item.hasSubMenu()) {
-                // Un check sub menu items
-                unCheckAllMenuItems(item.getSubMenu());
-            } else {
-                item.setChecked(false);
-            }
-        }
     }
 
-    public void JSON_HTTP_CALL() {
-        RequestOfJSonArray = new JsonArrayRequest(HTTP_JSON_URL,
+
+
+    public void JSON_HTTP_CALL(String url) {
+        RequestOfJSonArray = new JsonArrayRequest(url,
                 new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray response) {
@@ -418,8 +251,7 @@ Log.e("asd", HTTP_JSON_URL);
                 GetDataAdapter2.setEventDescription(json.getString(Event_Description_JSON));
 
 
-//                          TODO
-//                ВНИМАНИЕ!!!!! КОСТЫЛЬ!!!!!
+//TODO ВНИМАНИЕ!!!!! КОСТЫЛЬ!!!!!
                 if(json.getString(Image_URL_JSON).equals("null")){
                     GetDataAdapter2.setEventImageURL("https://pp.userapi.com/c622227/v622227481/ea18/Ac6o0JZhg6k.jpg");
                 }

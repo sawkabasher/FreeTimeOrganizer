@@ -1,13 +1,33 @@
 <resources>
-    <string name="app_name">FreeTimeOrganizer</string>
-    <string name="loading">Loading...</string>
+    <string name="app_name">Free Time Organizer</string>
+    <string name="loading">Loading…</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="addEventToCalendar">Add event to calendar</string>
     <string name="reportabug">Report a bug</string>
     <string name="share">Share</string>
-    <string name="menu_share">Share</string>
-    <string name="in_news">test</string>
-    <string name="publish_date">10.10.2018 10:00</string>
-    <string name="recent_news">test recent news</string>
+
+
+    <string name="contact_us">Contact Us</string>
+    <string name="about_us">About Us</string>
+    <string name="rate_us">Rate Us</string>
+    <string name="quit">Quit</string>
+    <string name="extras_string">Extras</string>
+
+    <!--Genres-->
+    <string name="Music">Music</string>
+    <string name="Family">Family</string>
+    <string name="Theater">Theater</string>
+    <string name="Sport">Sport</string>
+    <string name="Film">Film</string>
+    <string name="Festival">Festival</string>
+    <string name="Other">Other</string>
+    <!--Date-->
+    <string name="today">Today</string>
+    <string name="tomorrow">Tomorrow</string>
+    <string name="week">This Week</string>
+    <string name="choose_date">Choose Date</string>
+    <string name="all_time">All time</string>
+
+
 </resources>

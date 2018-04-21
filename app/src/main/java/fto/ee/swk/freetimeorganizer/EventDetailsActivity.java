@@ -12,7 +12,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.android.volley.toolbox.NetworkImageView;
 
 import java.text.ParseException;
@@ -28,7 +31,7 @@ public class EventDetailsActivity extends AppCompatActivity {
     String City;
     String Description;
     String DateTime;
-    String Location;
+    String Location; //todo
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,7 +47,7 @@ public class EventDetailsActivity extends AppCompatActivity {
                 onBackPressed(); // Implemented by activity
             }
         });
-
+        LinearLayout priceLinearLayout = (LinearLayout) findViewById(R.id.priceLinearLayout);
         TextView eventNameTextView1 = (TextView) findViewById(R.id.eventNameTextView1);
         TextView eventDateTextView1 = (TextView) findViewById(R.id.eventDateTextView1);
         TextView eventTimeTextView1 = (TextView) findViewById(R.id.eventTimeTextView1);
@@ -117,11 +120,21 @@ getEventPrice(),       // INDEX 11
 getEventDescription(), // INDEX 12
 */
 
+//TODO EventLocation OnClick open Google map !!
+//TODO Translate Event Description - not necessary
+
+priceLinearLayout.setOnClickListener(new View.OnClickListener() {
+
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(EventDetailsActivity.this, "Price Clicked", Toast.LENGTH_SHORT).show();
+                }
+            });
+
         getTicketsButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
-                // TODO Auto-generated method stub
                 Intent i = new Intent(Intent.ACTION_VIEW);
                 i.setData(Uri.parse(array[9]));
                 startActivity(i);
@@ -146,8 +159,7 @@ getEventDescription(), // INDEX 12
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch(item.getItemId())
-        {
+        switch(item.getItemId()) {
             case R.id.share:
                 Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
                 sharingIntent.setType("text/plain");

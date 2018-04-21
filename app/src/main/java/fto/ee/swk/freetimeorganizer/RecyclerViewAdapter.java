@@ -41,8 +41,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         imageLoader.get(dataAdapterOBJ.getEventImageURL(),
                 ImageLoader.getImageListener(
                         Viewholder.VollyImageView,//Server Image
-                        R.mipmap.ic_launcher,//Before loading server image the default showing image.
-                        android.R.drawable.ic_dialog_alert //Error image if requested image does not found on server.
+                        R.drawable.logo, //Before loading server image the default showing image.
+                        R.drawable.logo  //Error image if requested image does not found on server.
                 )
         );
 
@@ -84,7 +84,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         public TextView EventCityTextView;
         public TextView EventPriceTextView;
         public TextView EventGenreTextView;
-        public NetworkImageView VollyImageView ;
+        public NetworkImageView VollyImageView;
         public ViewHolder(View itemView) {
             super(itemView);
             EventNameTextView = (TextView) itemView.findViewById(R.id.eventNameTextView) ;

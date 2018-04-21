@@ -1,38 +1,20 @@
 package fto.ee.swk.freetimeorganizer;
 
-/**
- * Created by Juned on 2/8/2017.
- */
-/*
-Event_Name_JSON
-Event_Date_JSON
-Event_End_Date_JSON
-Event_Time_JSON
-Event_Location_JSON
-Event_City_JSON
-Event_Country_JSON
-Event_Genre_JSON
-Event_Info_JSON
-Event_Link_JSON
-Image_URL_JSON
-Event_Price_JSON
-Event_ID_JSON
-*/
 public class DataAdapter
 {
-    private String EventName;
-    private String EventDate;
-    private String EventEndDate;
-    private String EventTime;
-    private String EventLocation;
-    private String EventCity;
-    private String EventCountry;
-    private String EventGenre;
-    private String EventInfo;
-    private String EventLink;
-    private String EventImageURL;
-    private String EventPrice;
-    private String EventID;
+    private String EventName;        //Event_Name_JSON
+    private String EventDate;        //Event_Date_JSON
+    private String EventEndDate;     //Event_End_Date_JSON
+    private String EventTime;        //Event_Time_JSON
+    private String EventLocation;    //Event_Location_JSON
+    private String EventCity;        //Event_City_JSON
+    private String EventCountry;     //Event_Country_JSON
+    private String EventGenre;       //Event_Genre_JSON
+    private String EventInfo;        //Event_Info_JSON
+    private String EventLink;        //Event_Link_JSON
+    private String EventImageURL;    //Image_URL_JSON
+    private String EventPrice;       //Event_Price_JSON
+    private String EventID;          //Event_ID_JSON
     private String EventDescription;
 
     public String getEventDescription() {
@@ -149,16 +131,25 @@ public class DataAdapter
 
 
 
-//    public String TicketPrice;
-//    public String EventLocation;
+
+
 
 
 
     public String toString(){
-        return "\nid: " + EventID +
-               "\ntitle: " + EventName +
-               "\ndate: " + EventDate +
-               "\ntime: " + EventTime +
-               "\ncity: " + EventCity;
+        return  "EventName"        + " " + EventName         + ", " +
+                "EventDate"        + " " + EventDate         + ", " +
+                "EventEndDate"     + " " + EventEndDate      + ", " +
+                "EventTime"        + " " + EventTime         + ", " +
+                "EventLocation"    + " " + EventLocation     + ", " +
+                "EventCity"        + " " + EventCity         + ", " +
+                "EventCountry"     + " " + EventCountry      + ", " +
+                "EventGenre"       + " " + EventGenre        + ", " +
+                "EventInfo"        + " " + EventInfo         + ", " +
+                "EventLink"        + " " + EventLink         + ", " +
+                "EventImageURL"    + " " + EventImageURL     + ", " +
+                "EventPrice"       + " " + EventPrice        + ", " +
+                "EventID"          + " " + EventID           + ", " +
+                "EventDescription" + " " + EventDescription;
     }
 }

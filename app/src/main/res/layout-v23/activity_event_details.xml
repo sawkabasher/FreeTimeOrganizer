@@ -10,7 +10,6 @@
         android:id="@+id/app_bar_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         android:fitsSystemWindows="true"
         >
 
@@ -36,7 +35,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-                android:title="@string/recent_news"
                 app:layout_collapseMode="pin"
                 />
 
@@ -51,41 +49,41 @@
         android:layout_height="match_parent"
         android:clipToPadding="false"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:background="@color/colorBrown"
         >
 
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
+            app:cardCornerRadius="@dimen/cardview_corner_radius"
             app:cardElevation="5dp"
-            app:cardUseCompatPadding="true"
-            >
+            app:cardUseCompatPadding="true">
 
-                <LinearLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                >
+                android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/eventNameTextView1"
-                    android:padding="12dp"
-                    android:textSize="20sp"
-                    android:layout_marginTop="12dp"
-                    android:textStyle="bold|italic"
-                    android:textColor="@color/colorPrimaryText"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:padding="12dp"
+                    android:textColor="@color/colorPrimaryText"
+                    android:textSize="20sp"
+                    android:textStyle="bold|italic" />
 
 
                 <LinearLayout
-                    android:orientation="horizontal"
-                    android:padding="12dp"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="12dp">
 
                     <ImageView
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="44dp"
                         android:layout_weight="1"
                         android:contentDescription="@string/app_name"
@@ -93,23 +91,24 @@
 
                     <TextView
                         android:id="@+id/eventDateTextView1"
-                        android:layout_gravity="center_vertical"
-                        android:padding="12dp"
-                        android:textSize="14sp"
-                        android:textColor="@color/colorPrimaryText"
                         android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
                         android:layout_weight="9"
-                        android:layout_height="wrap_content" />
+                        android:padding="12dp"
+                        android:textColor="#3e3e3e"
+                        android:textSize="14sp" />
 
                 </LinearLayout>
+
                 <LinearLayout
-                    android:orientation="horizontal"
-                    android:padding="12dp"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="12dp">
 
                     <ImageView
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="44dp"
                         android:layout_weight="1"
                         android:contentDescription="@string/app_name"
@@ -117,24 +116,24 @@
 
                     <TextView
                         android:id="@+id/eventTimeTextView1"
-                        android:layout_gravity="center_vertical"
-                        android:padding="12dp"
-                        android:textSize="14sp"
-                        android:textColor="@color/colorPrimaryText"
                         android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
                         android:layout_weight="9"
-                        android:layout_height="wrap_content" />
+                        android:padding="12dp"
+                        android:textColor="#3e3e3e"
+                        android:textSize="14sp" />
 
                 </LinearLayout>
 
                 <LinearLayout
-                    android:orientation="horizontal"
-                    android:padding="12dp"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="12dp">
 
                     <ImageView
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="44dp"
                         android:layout_weight="1"
                         android:contentDescription="@string/app_name"
@@ -142,23 +141,26 @@
 
                     <TextView
                         android:id="@+id/eventCityTextView1"
-                        android:layout_gravity="center_vertical"
-                        android:padding="12dp"
-                        android:textSize="14sp"
-                        android:textColor="@color/colorPrimaryText"
                         android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
                         android:layout_weight="9"
-                        android:layout_height="wrap_content" />
+                        android:padding="12dp"
+                        android:textColor="#3e3e3e"
+                        android:textSize="14sp" />
 
                 </LinearLayout>
+
                 <LinearLayout
-                    android:orientation="horizontal"
-                    android:padding="12dp"
+                    android:id="@+id/priceLinearLayout"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:orientation="horizontal"
+                    android:padding="12dp">
 
                     <ImageView
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="44dp"
                         android:layout_weight="1"
                         android:contentDescription="@string/app_name"
@@ -166,23 +168,24 @@
 
                     <TextView
                         android:id="@+id/eventPriceTextView1"
-                        android:layout_gravity="center_vertical"
-                        android:padding="12dp"
-                        android:textSize="14sp"
-                        android:textColor="@color/colorPrimaryText"
                         android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
                         android:layout_weight="9"
-                        android:layout_height="wrap_content" />
+                        android:padding="12dp"
+                        android:textColor="#3e3e3e"
+                        android:textSize="14sp" />
 
                 </LinearLayout>
+
                 <LinearLayout
-                    android:orientation="horizontal"
-                    android:padding="12dp"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="12dp">
 
                     <ImageView
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="44dp"
                         android:layout_weight="1"
                         android:src="@drawable/ic_info" />
@@ -194,11 +197,10 @@
                         android:layout_gravity="center_vertical"
                         android:layout_weight="9"
                         android:padding="12dp"
-                        android:textColor="@color/colorPrimaryText"
+                        android:textColor="#3e3e3e"
                         android:textSize="14sp" />
 
                 </LinearLayout>
-
 
 
             </LinearLayout>
@@ -210,12 +212,12 @@
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/button2"
-        android:src="@drawable/internet"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:src="@drawable/internet_black"
+        app:backgroundTint="@color/colorYellow"
         app:elevation="6dp"
-        app:pressedTranslationZ="12dp"
         app:layout_anchor="@id/app_bar_layout"
         app:layout_anchorGravity="bottom|right|end"
-        />
+        app:pressedTranslationZ="12dp" />
 </android.support.design.widget.CoordinatorLayout>

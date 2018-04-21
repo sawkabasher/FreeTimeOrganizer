@@ -12,11 +12,6 @@ import com.android.volley.toolbox.DiskBasedCache;
 import com.android.volley.toolbox.HurlStack;
 import com.android.volley.toolbox.ImageLoader;
 
-;
-/**
- * Created by Juned on 2/8/2017.
- */
-
 public class ImageAdapter {
 
     public static ImageAdapter imageAdapter;

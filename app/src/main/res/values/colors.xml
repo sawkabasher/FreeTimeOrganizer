@@ -6,5 +6,12 @@
     <color name="colorWhite">#ffffff</color>
     <color name="colorWhiteOpacity">#68ffffff</color>
     <color name="colorPrimaryText">#050505</color>
+    <color name="colorGrey">#bcbcbc</color>
 
+
+    <color name="colorBrown">#524449</color>
+    <color name="colorCyan">#89b7aa</color>
+    <color name="colorYellow">#ebe970</color>
+    <color name="colorOrange">#e79652</color>
+    <color name="colorRed">#e15a58</color>
 </resources>

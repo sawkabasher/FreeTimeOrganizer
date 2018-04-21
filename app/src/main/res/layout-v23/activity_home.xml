@@ -1,91 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.DrawerLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/drawer_layout"
+<android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/swipeRefreshLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_alignParentTop="true"
     android:fitsSystemWindows="true">
 
-    <!-- This LinearLayout represents the contents of the screen  -->
-    <LinearLayout
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerview1"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
-
-        <include
-            layout="@layout/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:app="http://schemas.android.com/apk/res-auto"
-            xmlns:tools="http://schemas.android.com/tools"
-            android:id="@+id/activity_main"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            tools:context="fto.ee.swk.freetimeorganizer.MainActivity">
-
-            <android.support.v4.widget.SwipeRefreshLayout
-                android:id="@+id/swipeRefreshLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_below="@+id/spinner"
-                tools:ignore="RtlHardcoded">
-
-                <android.support.v7.widget.RecyclerView
-                    android:id="@+id/recyclerview1"
-                    android:layout_width="fill_parent"
-                    android:layout_height="match_parent"
-                    android:layout_alignParentBottom="true"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true"
-                    android:background="@mipmap/back1"
-                    android:fadingEdge="horizontal|vertical"
-                    android:scrollIndicators="none"
-                    android:scrollbarAlwaysDrawVerticalTrack="false"
-                    android:scrollbars="vertical"
-                    tools:ignore="RtlHardcoded" />
-
-
-            </android.support.v4.widget.SwipeRefreshLayout>
-
-            <!--<Spinner-->
-                <!--android:id="@+id/spinner"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_alignParentEnd="true"-->
-                <!--android:layout_alignParentLeft="true"-->
-                <!--android:layout_alignParentRight="true"-->
-                <!--android:layout_alignParentStart="true"-->
-                <!--android:layout_alignParentTop="true"-->
-                <!--android:animateLayoutChanges="true"-->
-                <!--android:padding="10dp"-->
-                <!--android:spinnerMode="dialog"-->
-                <!--tools:ignore="RtlHardcoded" />-->
-
-        </RelativeLayout>
-        <!-- The main content view where fragments are loaded -->
-        <FrameLayout
-            android:id="@+id/flContent"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-
-    </LinearLayout>
-
-    <!-- The navigation drawer that comes from the left -->
-    <!-- Note that `android:layout_gravity` needs to be set to 'start' -->
-    <android.support.design.widget.NavigationView
-        android:id="@+id/nvView"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_gravity="start"
-        android:alwaysDrawnWithCache="true"
-        android:animateLayoutChanges="false"
-        android:animationCache="true"
-        android:background="@android:color/white"
-        app:menu="@menu/drawer_view" />
-</android.support.v4.widget.DrawerLayout>
+        android:fadingEdge="horizontal|vertical"
+        android:scrollIndicators="none"
+        android:scrollbarAlwaysDrawVerticalTrack="false"
+        android:scrollbars="vertical" />
+</android.support.v4.widget.SwipeRefreshLayout>

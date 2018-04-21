@@ -5,20 +5,16 @@
     android:id="@+id/cardview1"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginEnd="5dp"
-    android:layout_marginStart="5dp"
-    android:layout_marginTop="10dp"
-    android:elevation="0dp"
-    card_view:cardElevation="1dp"
-    card_view:cardMaxElevation="1dp"
+    android:layout_marginTop="8dp"
     android:background="@color/colorWhiteOpacity"
-    card_view:contentPadding="1dp">
+    android:elevation="0dp"
+    card_view:cardElevation="2dp"
+    card_view:cardCornerRadius="0dp">
 
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorWhiteOpacity"
         android:clickable="true"
         android:focusable="true">
 

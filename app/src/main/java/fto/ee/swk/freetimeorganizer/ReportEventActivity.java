@@ -1,12 +1,12 @@
 package fto.ee.swk.freetimeorganizer;
 
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,11 +23,10 @@ import java.util.Map;
 
 public class ReportEventActivity extends AppCompatActivity {
     TextInputLayout reportInputLayout;
-    Button submitReportButton;
     TextView eventIdReportTextView;
     TextView eventTitleReportTextView;
-    FloatingActionButton submitReportFloatButton;
-    Toolbar toolbar;
+    private Toolbar toolbar;
+
     String eventID;
     String URL_POST = "https://fto.ee/api/v1/reports/create";
     @Override
@@ -35,12 +34,12 @@ public class ReportEventActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_report_event);
         reportInputLayout = (TextInputLayout) findViewById(R.id.textReportInputLayout);
-        submitReportButton = (Button) findViewById(R.id.submitReportButton);
         eventIdReportTextView = (TextView) findViewById(R.id.eventIdReportTextView2);
         eventTitleReportTextView = (TextView) findViewById(R.id.eventTitleReportTextView2);
-        submitReportFloatButton = (FloatingActionButton) findViewById(R.id.floatingActionButton2);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setNavigationIcon(R.drawable.ic_back); // your drawable
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        toolbar.setNavigationIcon(R.drawable.ic_back);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -56,25 +55,25 @@ public class ReportEventActivity extends AppCompatActivity {
             eventTitleReportTextView.setText("Title: " + array[1]);
         }
 
-        submitReportButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                JSON_HTTP_POST();
-                finish();
-                Toast.makeText(ReportEventActivity.this, "Your Report submitted. Thank you!", Toast.LENGTH_SHORT).show();
-            }
-        });
-        submitReportFloatButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                JSON_HTTP_POST();
-                finish();
-                Toast.makeText(ReportEventActivity.this, "Your Report submitted. Thank you!", Toast.LENGTH_SHORT).show();
-            }
-        });
-
     } // onCreate end
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.settings_menu, menu);
+        return true;
+    }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        switch(item.getItemId())
+        {
+            case R.id.submit:
+                JSON_HTTP_POST();
+                finish();
+                Toast.makeText(ReportEventActivity.this, "Your Report submitted. Thank you!", Toast.LENGTH_SHORT).show();
+                return true;
+        }
+        return true;
+    }
     private void JSON_HTTP_POST(){
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_POST, new Response.Listener<String>() {
 
@@ -105,6 +104,7 @@ public class ReportEventActivity extends AppCompatActivity {
         requestQueue.add(stringRequest);
 
     }
+
 }
 
 

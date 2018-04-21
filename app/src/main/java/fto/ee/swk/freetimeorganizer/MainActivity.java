@@ -15,7 +15,8 @@ import org.json.JSONArray;
 
 
 public class MainActivity extends AppCompatActivity {
-    private static int SPLASH_TIME_OUT = 2000;
+
+    private static int SPLASH_TIME_OUT = 500;    //todo ----> SPLASH_TIME_OUT = 2000;
     JsonArrayRequest RequestOfJSonArray;
     RequestQueue requestQueue;
 
@@ -25,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        JSON_HTTP_CALL();
+        JSON_HTTP_CALL(HTTP_JSON_URL);
 
         new Handler().postDelayed(new Runnable() {
             @Override
@@ -36,8 +37,8 @@ public class MainActivity extends AppCompatActivity {
             }
         }, SPLASH_TIME_OUT);}
 
-    public void JSON_HTTP_CALL() {
-        RequestOfJSonArray = new JsonArrayRequest(HTTP_JSON_URL,
+    public void JSON_HTTP_CALL(String url) {
+        RequestOfJSonArray = new JsonArrayRequest(url,
                 new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray response) {
