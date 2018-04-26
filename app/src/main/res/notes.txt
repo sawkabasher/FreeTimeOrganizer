@@ -98,7 +98,7 @@
         //TODO https://fto.ee/api/v1/events/search
 
 
-
+//todo!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! C:\Users\aleks\Downloads\CardViewExample-master\CardViewExample-master
 
         //todo genre switch add\delete
         case R.id.nav_genre_music:

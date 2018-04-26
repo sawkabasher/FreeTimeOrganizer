@@ -1,6 +1,7 @@
 package fto.ee.swk.freetimeorganizer;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -12,10 +13,12 @@ import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -33,7 +36,11 @@ import java.util.List;
 public class HomeActivity extends AppCompatActivity {
     public List<DataAdapter> ListOfdataAdapter;
     RecyclerView recyclerView;
-    String HTTP_JSON_URL = "https://fto.ee/api/v1/events";
+    private String HTTP_JSON_URL;
+    private String baseUrl = "https://fto.ee/api/v1/events/find";
+    private String genrePart;
+    private String cityPart;
+    private String datePart;
     final String Event_Id_JSON = "id";
     final String Event_Name_JSON = "title";
     final String Event_Date_JSON = "date";
@@ -48,9 +55,10 @@ public class HomeActivity extends AppCompatActivity {
     final String Image_URL_JSON = "img";
     final String Event_Price_JSON = "price";
     final String Event_Description_JSON = "des";
-    private DrawerLayout mDrawer;
+    public DrawerLayout mDrawer;
     private Toolbar toolbar;
     private NavigationView nvDrawer;
+
     JsonArrayRequest RequestOfJSonArray;
     RequestQueue requestQueue;
     View view;
@@ -59,16 +67,41 @@ public class HomeActivity extends AppCompatActivity {
     RecyclerView.Adapter recyclerViewadapter;
     ArrayList<JSONObject> EventDataHold;
     SwipeRefreshLayout swipeRefreshLayout;
+    private static final String TAG = "sawkabasher";
 
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 1) {
             if(resultCode == RESULT_OK) {
-                HTTP_JSON_URL = data.getStringExtra("url");
-                JSON_HTTP_CALL(HTTP_JSON_URL);
+                genrePart = data.getStringExtra("genrePart");
+                Log.e(TAG,"onActivityResult" + genrePart);
             }
+            JSON_HTTP_CALL(HTTP_JSON_URL);
         }
+        if (requestCode == 2) {
+            if(resultCode == RESULT_OK) {
+                cityPart = data.getStringExtra("cityPart");
+                Log.e(TAG,"onActivityResult" + cityPart);
+            }
+            JSON_HTTP_CALL(HTTP_JSON_URL);
+        }
+        if (requestCode == 3) {
+            if(resultCode == RESULT_OK) {
+                datePart = data.getStringExtra("datePart");
+                Log.e(TAG,"onActivityResult" + datePart);
+            }
+            JSON_HTTP_CALL(HTTP_JSON_URL);
+        }
+    }
+    @Override
+    protected void onPostResume() {
+        super.onPostResume();
+        loadData();
+        HTTP_JSON_URL = baseUrl + datePart + cityPart + genrePart;
+        JSON_HTTP_CALL(HTTP_JSON_URL);
+        Log.i(TAG, "onPostResume: TRIGGERED ______________________________");
+        Log.i(TAG, "HTTP_JSON_URL " + HTTP_JSON_URL);
     }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,13 +117,18 @@ public class HomeActivity extends AppCompatActivity {
         mDrawer.addDrawerListener(toggle);
         toggle.syncState();
 
+
         EventDataHold = new ArrayList<>();
         ListOfdataAdapter = new ArrayList<>();
         recyclerView = (RecyclerView) findViewById(R.id.recyclerview1);
         recyclerView.setHasFixedSize(true);
         layoutManagerOfrecyclerView = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManagerOfrecyclerView);
+        loadData();
+        HTTP_JSON_URL = baseUrl + datePart + cityPart + genrePart;
         JSON_HTTP_CALL(HTTP_JSON_URL);
+        Log.i(TAG, "onCreate: TRIGGERED ______________________________");
+        Log.i(TAG, "HTTP_JSON_URL " + HTTP_JSON_URL);
 
 // Pull to refresh
         swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipeRefreshLayout);
@@ -99,6 +137,7 @@ public class HomeActivity extends AppCompatActivity {
         public void onRefresh() {
 // cancel the Visual indication of a refresh
         swipeRefreshLayout.setRefreshing(false);
+        loadData();
         JSON_HTTP_CALL(HTTP_JSON_URL);
             }
         });
@@ -153,6 +192,50 @@ public class HomeActivity extends AppCompatActivity {
         });
 
     }
+    private void saveData(String data){
+        SharedPreferences sharedPreferences = getSharedPreferences("HTTP_JSON_URL link", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("HTTP_JSON_URL link", data);
+        editor.apply();
+    }
+    private void loadData(){
+        SharedPreferences genreSharedPreferences = getSharedPreferences("genrePart", MODE_PRIVATE);
+        SharedPreferences dateSharedPreferences = getSharedPreferences("datePart", MODE_PRIVATE);
+        SharedPreferences citySharedPreferences = getSharedPreferences("cityPart", MODE_PRIVATE);
+        SharedPreferences HTTP_JSON_URLSharedPreferences = getSharedPreferences("HTTP_JSON_URL link", MODE_PRIVATE);
+
+
+        genrePart = genreSharedPreferences.getString("genrePart part",genrePart);
+        cityPart = citySharedPreferences.getString("cityPart part",cityPart);
+        datePart = dateSharedPreferences.getString("datePart part",datePart);
+        HTTP_JSON_URL = HTTP_JSON_URLSharedPreferences.getString("HTTP_JSON_URL link", HTTP_JSON_URL);
+        if (genrePart == null) {
+            genrePart = "";
+            Log.i(TAG, "loadData: genrePart IS NULL!!!!");
+        }
+        if (cityPart == null) {
+            cityPart = "/all";
+            Log.i(TAG, "loadData: cityPart IS NULL!!!!");
+
+        }
+        if (datePart == null) {
+            datePart = "/all";
+            Log.i(TAG, "loadData: datePart IS NULL!!!!");
+        }
+        if (HTTP_JSON_URL == null) {
+            HTTP_JSON_URL = "https://fto.ee/api/v1/events";
+            Log.i(TAG, "loadData: HTTP_JSON_URL IS NULL!!!!");
+        }
+    }
+
+
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        saveData(HTTP_JSON_URL);
+        Log.i(TAG, "onDestroy: TRIGGERED _______________________________" + HTTP_JSON_URL);
+    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -170,19 +253,29 @@ public class HomeActivity extends AppCompatActivity {
                 new NavigationView.OnNavigationItemSelectedListener() {
                     @Override
                     public boolean onNavigationItemSelected(MenuItem menuItem) {
+
                         switch(menuItem.getItemId()) {
                             case R.id.nav_find:
-                                Intent settingsIntent = new Intent(HomeActivity.this, SettingsActivity.class);
-                                startActivityForResult(settingsIntent,1);
+                                //todo seems like it works a bit different. not critical, but better change this to simple "start activity" instead of "start activity for result"
+                                Intent genreSettingsIntent = new Intent(HomeActivity.this, GenreSettingsActivity.class);
+                                startActivityForResult(genreSettingsIntent,1);
                                 mDrawer.closeDrawers();
+
                                 break;
                             case R.id.nav_location:
-
+                                //startActivityForResult(settingsIntent,1);
+                                Intent citySettingsIntent = new Intent(HomeActivity.this, CitySettingsActivity.class);
+                                startActivityForResult(citySettingsIntent,2);
+                                mDrawer.closeDrawers();
                                 break;
                             case R.id.nav_time:
-
+                                Intent dateSettingsIntent = new Intent(HomeActivity.this, DateSettingsActivity.class);
+                                startActivityForResult(dateSettingsIntent,3);
+                                mDrawer.closeDrawers();
+                                //startActivityForResult(settingsIntent,1);
                                 break;
                             case R.id.nav_liked:
+                                Toast.makeText(HomeActivity.this, "TODO", Toast.LENGTH_SHORT).show();
                                 break;
                             case R.id.nav_random:
                                 HTTP_JSON_URL = "https://fto.ee/api/v1/events/random";
