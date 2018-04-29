@@ -6,8 +6,8 @@ android {
         applicationId "fto.ee.swk.freetimeorganizer"
         minSdkVersion 16
         targetSdkVersion 27
-        versionCode 7
-        versionName "3.2"
+        versionCode 9
+        versionName "0.4.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -30,6 +30,7 @@ dependencies {
     implementation 'com.android.support:design:25.0.0'
     implementation 'com.android.support:cardview-v7:25.0.0'
     implementation 'com.android.support:recyclerview-v7:25.0.0'
+    implementation 'com.google.code.gson:gson:2.8.2'
     implementation 'com.mcxiaoke.volley:library-aar:1.0.0'
     implementation 'com.android.support:appcompat-v7:25.3.1'
     testImplementation 'junit:junit:4.12'

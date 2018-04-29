@@ -103,6 +103,7 @@ public class GenreSettingsActivity extends AppCompatActivity {
         }
     }
 
+
     
     /**
      creates switches
@@ -114,8 +115,9 @@ public class GenreSettingsActivity extends AppCompatActivity {
                 if (buttonView.isChecked()) {
                     genrePart +=  genre_id + "_";
                     Log.e("GenreSettingsActivity", "genrePart === " + genrePart);
-                    //Toast.makeText(GenreSettingsActivity.this, buttonView.getId() + "Checked", Toast.LENGTH_SHORT).show();
                     saveData(genrePart);
+                    //Toast.makeText(GenreSettingsActivity.this, buttonView.getId() + "Checked", Toast.LENGTH_SHORT).show();
+
                     //save switch state
                     SharedPreferences.Editor editor = getSharedPreferences((String) buttonView.getText(), MODE_PRIVATE).edit();
                     editor.putBoolean((String) buttonView.getText(), true);

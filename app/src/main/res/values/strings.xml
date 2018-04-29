@@ -25,9 +25,11 @@
     <!--Date-->
     <string name="today">Today</string>
     <string name="tomorrow">Tomorrow</string>
-    <string name="week">This Week</string>
-    <string name="choose_date">Choose Date</string>
-    <string name="all_time">All time</string>
+    <string name="week">This week</string>
+    <string name="choose_date">Pick a date…</string>
+    <string name="all_time">Anytime</string>
+    <string name="month">This month</string>
+    <string name="date">Date</string>
 
 
 </resources>

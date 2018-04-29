@@ -24,6 +24,6 @@ public class CityDataObject {
 
     //красивый вывод
     public String toString(){
-        return "city" + city;
+        return city;
     }
 }

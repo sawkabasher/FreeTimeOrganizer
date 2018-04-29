@@ -2,18 +2,31 @@ package fto.ee.swk.freetimeorganizer;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.CalendarView;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.Toast;
 
 public class DateSettingsActivity extends AppCompatActivity {
     private String datePart;
     private static final String TAG = "DateSettingsActivity";
-    Toolbar toolbar;
+    private Toolbar toolbar;
+    private RadioButton radioAllTime;
+    private RadioButton greenRadioButton;
+    private RadioButton radioTomorrow;
+    private RadioButton radioThisWeek;
+    private RadioButton radioThisMonth;
+    private RadioButton radioPickDate;
+    private String date;
+
+    private CalendarView calendar;
+    private LinearLayout ll;
 
 
     @Override
@@ -33,54 +46,79 @@ public class DateSettingsActivity extends AppCompatActivity {
                 onBackPressed(); // Implemented by activity
             }
         });
-        RadioButton radioAllTime = (RadioButton)findViewById(R.id.radioAllTime);
+        radioAllTime = (RadioButton)findViewById(R.id.radioAllTime);
         radioAllTime.setOnClickListener(radioButtonClickListener);
 
-        RadioButton greenRadioButton = (RadioButton)findViewById(R.id.radioToday);
+        greenRadioButton = (RadioButton)findViewById(R.id.radioToday);
         greenRadioButton.setOnClickListener(radioButtonClickListener);
 
-        RadioButton radioTomorrow = (RadioButton)findViewById(R.id.radioTomorrow);
+        radioTomorrow = (RadioButton)findViewById(R.id.radioTomorrow);
         radioTomorrow.setOnClickListener(radioButtonClickListener);
 
-        RadioButton radioThisWeek = (RadioButton)findViewById(R.id.radioThisWeek);
+        radioThisWeek = (RadioButton)findViewById(R.id.radioThisWeek);
         radioThisWeek.setOnClickListener(radioButtonClickListener);
 
-        RadioButton radioThisMonth = (RadioButton)findViewById(R.id.ThisMonth);
+        radioThisMonth = (RadioButton)findViewById(R.id.ThisMonth);
         radioThisMonth.setOnClickListener(radioButtonClickListener);
+
+        radioPickDate = (RadioButton) findViewById(R.id.pickDateRadio);
+        radioPickDate.setOnClickListener(radioButtonClickListener);
+
+        ll = (LinearLayout) findViewById(R.id.pickDate);
+        ll.setVisibility(View.GONE);
+
+
+        calendar = (CalendarView) findViewById(R.id.pickDateCalendar);
+
+
+        calendar.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
+            @Override
+            public void onSelectedDayChange(CalendarView view, int year, int month, int dayOfMonth) {
+                date = year + "-" + (month + 1) + "-" + dayOfMonth;
+                Log.d(TAG, "onSelectedDayChange: date = " + date);
+                datePart = "/" + date;
+                saveData(datePart);
+            }
+        });
     }
     View.OnClickListener radioButtonClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             RadioButton rb = (RadioButton)v;
             switch (rb.getId()) {
-                case R.id.radioAllTime: datePart = "/All";
-                    Toast.makeText(DateSettingsActivity.this, datePart, Toast.LENGTH_SHORT).show();
+                case R.id.radioAllTime:
+                    datePart = "/all";
                     Log.i(TAG, "onClick: "+datePart);
                     saveData(datePart);
                     break;
-                case R.id.radioToday: datePart = "/today";
-                    Toast.makeText(DateSettingsActivity.this, datePart, Toast.LENGTH_SHORT).show();
+                case R.id.radioToday:
+                    datePart = "/today";
                     Log.i(TAG, "onClick: "+datePart);
                     saveData(datePart);
                     break;
-                case R.id.radioTomorrow: datePart = "/tomorrow";
-                    Toast.makeText(DateSettingsActivity.this, datePart, Toast.LENGTH_SHORT).show();
+                case R.id.radioTomorrow:
+                    datePart = "/tomorrow";
                     Log.i(TAG, "onClick: "+datePart);
                     saveData(datePart);
                     break;
-                case R.id.radioThisWeek: datePart = "/week";
-                    Toast.makeText(DateSettingsActivity.this, datePart, Toast.LENGTH_SHORT).show();
+                case R.id.radioThisWeek:
+                    datePart = "/week";
                     Log.i(TAG, "onClick: "+datePart);
                     saveData(datePart);
                     break;
-                case R.id.ThisMonth: datePart = "/month";
-                    Toast.makeText(DateSettingsActivity.this, datePart, Toast.LENGTH_SHORT).show();
-                    Log.i(TAG, "onClick: "+datePart);
-                    Toast.makeText(DateSettingsActivity.this, "TODO", Toast.LENGTH_SHORT).show();
+                case R.id.ThisMonth:
+                    datePart = "/month";
+                    Log.i(TAG, "onClick: " + datePart);
                     saveData(datePart);
+                    break;
+                case R.id.pickDateRadio:
+
+                    ll.setVisibility(View.VISIBLE);
+
                     break;
 
                 default:
+                    ll.setVisibility(View.GONE);
                     break;
             }
         }
@@ -112,5 +150,11 @@ public class DateSettingsActivity extends AppCompatActivity {
         saveData(datePart);
         Log.d(TAG, "onDestroy: Triggered. datePart=" + datePart);
         finish();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.d(TAG, "onPause: Tiggered. =================");
     }
 }

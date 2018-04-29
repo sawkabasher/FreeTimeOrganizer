@@ -38,8 +38,8 @@ public class HomeActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     private String HTTP_JSON_URL;
     private String baseUrl = "https://fto.ee/api/v1/events/find";
-    private String genrePart;
-    private String cityPart;
+    private String genrePart = "/";
+    private String cityPart = "/";
     private String datePart;
     final String Event_Id_JSON = "id";
     final String Event_Name_JSON = "title";
@@ -209,11 +209,11 @@ public class HomeActivity extends AppCompatActivity {
         cityPart = citySharedPreferences.getString("cityPart part",cityPart);
         datePart = dateSharedPreferences.getString("datePart part",datePart);
         HTTP_JSON_URL = HTTP_JSON_URLSharedPreferences.getString("HTTP_JSON_URL link", HTTP_JSON_URL);
-        if (genrePart == null) {
+        if (genrePart == "/") {
             genrePart = "";
             Log.i(TAG, "loadData: genrePart IS NULL!!!!");
         }
-        if (cityPart == null) {
+        if (cityPart == "/") {
             cityPart = "/all";
             Log.i(TAG, "loadData: cityPart IS NULL!!!!");
 
