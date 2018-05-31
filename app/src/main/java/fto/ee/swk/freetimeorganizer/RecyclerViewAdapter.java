@@ -14,16 +14,16 @@ import java.util.List;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
     Context context;
-    List<DataAdapter> dataAdapters;
+    List<DataObject> dataObjects;
     private static ImageLoader imageLoader;
 
     public static ImageLoader getImageLoader() {
         return imageLoader;
     }
 
-    public RecyclerViewAdapter(List<DataAdapter> getDataAdapter, Context context){
+    public RecyclerViewAdapter(List<DataObject> getDataObject, Context context){
         super();
-        this.dataAdapters = getDataAdapter;
+        this.dataObjects = getDataObject;
         this.context = context;
     }
 
@@ -36,9 +36,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     @Override
     public void onBindViewHolder(ViewHolder Viewholder, int position) {
-        DataAdapter dataAdapterOBJ =  dataAdapters.get(position);
+        DataObject dataObjectOBJ =  dataObjects.get(position);
         imageLoader = ImageAdapter.getInstance(context).getImageLoader();
-        imageLoader.get(dataAdapterOBJ.getEventImageURL(),
+        imageLoader.get(dataObjectOBJ.getEventImageURL(),
                 ImageLoader.getImageListener(
                         Viewholder.VollyImageView,//Server Image
                         R.drawable.logo, //Before loading server image the default showing image.
@@ -46,27 +46,27 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 )
         );
 
-        Viewholder.VollyImageView.setImageUrl(dataAdapterOBJ.getEventImageURL(), imageLoader);
-        Viewholder.EventNameTextView.setText(dataAdapterOBJ.getEventName());
-        Viewholder.EventDateTextView.setText(dataAdapterOBJ.getEventDate().replace("-","."));
-        if (!dataAdapterOBJ.getEventDate().equals(dataAdapterOBJ.getEventEndDate())){
-            Viewholder.EventDateTextView.append(" - " + dataAdapterOBJ.getEventEndDate().replace("-","."));
+        Viewholder.VollyImageView.setImageUrl(dataObjectOBJ.getEventImageURL(), imageLoader);
+        Viewholder.EventNameTextView.setText(dataObjectOBJ.getEventName());
+        Viewholder.EventDateTextView.setText(dataObjectOBJ.getEventDate().replace("-","."));
+        if (!dataObjectOBJ.getEventDate().equals(dataObjectOBJ.getEventEndDate())){
+            Viewholder.EventDateTextView.append(" - " + dataObjectOBJ.getEventEndDate().replace("-","."));
         }
 
-        Viewholder.EventTimeTextView.setText("Time: " + dataAdapterOBJ.getEventTime());
-        if(dataAdapterOBJ.getEventPrice().equals("")){
+        Viewholder.EventTimeTextView.setText("Time: " + dataObjectOBJ.getEventTime());
+        if(dataObjectOBJ.getEventPrice().equals("")){
             Viewholder.EventPriceTextView.setText("Price: FREE / unknown" );
         }else {
-            Viewholder.EventPriceTextView.setText("Price: " + dataAdapterOBJ.getEventPrice() + " €");
+            Viewholder.EventPriceTextView.setText("Price: " + dataObjectOBJ.getEventPrice() + " €");
         }
 
-        Viewholder.EventGenreTextView.setText("Genre: " + dataAdapterOBJ.getEventGenre());
+        Viewholder.EventGenreTextView.setText("Genre: " + dataObjectOBJ.getEventGenre());
 
-        if(!dataAdapterOBJ.getEventCity().equals("null") && !dataAdapterOBJ.getEventCity().equals("Estonia  ")){
-            Viewholder.EventCityTextView.setText(dataAdapterOBJ.getEventCity() + ", ");
-            Viewholder.EventCityTextView.append(dataAdapterOBJ.getEventCountry());
+        if(!dataObjectOBJ.getEventCity().equals("null") && !dataObjectOBJ.getEventCity().equals("Estonia  ")){
+            Viewholder.EventCityTextView.setText(dataObjectOBJ.getEventCity() + ", ");
+            Viewholder.EventCityTextView.append(dataObjectOBJ.getEventCountry());
         } else {
-            Viewholder.EventCityTextView.setText(dataAdapterOBJ.getEventCountry());
+            Viewholder.EventCityTextView.setText(dataObjectOBJ.getEventCountry());
         }
 
 
@@ -74,7 +74,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     @Override
     public int getItemCount() {
-        return dataAdapters.size();
+        return dataObjects.size();
     }
 
     class ViewHolder extends RecyclerView.ViewHolder{

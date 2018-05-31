@@ -1,6 +1,6 @@
 package fto.ee.swk.freetimeorganizer;
 
-public class DataAdapter
+public class DataObject
 {
     private String EventName;        //Event_Name_JSON
     private String EventDate;        //Event_Date_JSON

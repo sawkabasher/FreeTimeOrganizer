@@ -56,34 +56,35 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
-            app:cardCornerRadius="@dimen/cardview_corner_radius"
             app:cardElevation="5dp"
-            app:cardUseCompatPadding="true">
+            app:cardUseCompatPadding="true"
+            >
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                >
 
                 <TextView
                     android:id="@+id/eventNameTextView1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
                     android:padding="12dp"
-                    android:textColor="@color/colorPrimaryText"
                     android:textSize="20sp"
-                    android:textStyle="bold|italic" />
+                    android:layout_marginTop="12dp"
+                    android:textStyle="bold|italic"
+                    android:textColor="@color/colorPrimaryText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
 
 
                 <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:padding="12dp">
+                    android:padding="12dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
                     <ImageView
-                        android:layout_width="0dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="44dp"
                         android:layout_weight="1"
                         android:contentDescription="@string/app_name"
@@ -91,24 +92,23 @@
 
                     <TextView
                         android:id="@+id/eventDateTextView1"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
-                        android:layout_weight="9"
                         android:padding="12dp"
-                        android:textColor="#3e3e3e"
-                        android:textSize="14sp" />
+                        android:textSize="14sp"
+                        android:textColor="@color/colorPrimaryText"
+                        android:layout_width="0dp"
+                        android:layout_weight="9"
+                        android:layout_height="wrap_content" />
 
                 </LinearLayout>
-
                 <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:padding="12dp">
+                    android:padding="12dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
                     <ImageView
-                        android:layout_width="0dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="44dp"
                         android:layout_weight="1"
                         android:contentDescription="@string/app_name"
@@ -116,24 +116,24 @@
 
                     <TextView
                         android:id="@+id/eventTimeTextView1"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
-                        android:layout_weight="9"
                         android:padding="12dp"
-                        android:textColor="#3e3e3e"
-                        android:textSize="14sp" />
+                        android:textSize="14sp"
+                        android:textColor="@color/colorPrimaryText"
+                        android:layout_width="0dp"
+                        android:layout_weight="9"
+                        android:layout_height="wrap_content" />
 
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:padding="12dp">
+                    android:padding="12dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
                     <ImageView
-                        android:layout_width="0dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="44dp"
                         android:layout_weight="1"
                         android:contentDescription="@string/app_name"
@@ -141,26 +141,25 @@
 
                     <TextView
                         android:id="@+id/eventCityTextView1"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
-                        android:layout_weight="9"
                         android:padding="12dp"
-                        android:textColor="#3e3e3e"
-                        android:textSize="14sp" />
+                        android:textSize="14sp"
+                        android:textColor="@color/colorPrimaryText"
+                        android:layout_width="0dp"
+                        android:layout_weight="9"
+                        android:layout_height="wrap_content" />
 
                 </LinearLayout>
-
                 <LinearLayout
                     android:id="@+id/priceLinearLayout"
+                    android:orientation="horizontal"
+                    android:padding="12dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:clickable="true"
-                    android:orientation="horizontal"
-                    android:padding="12dp">
+                    android:clickable="true">
 
                     <ImageView
-                        android:layout_width="0dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="44dp"
                         android:layout_weight="1"
                         android:contentDescription="@string/app_name"
@@ -168,27 +167,20 @@
 
                     <TextView
                         android:id="@+id/eventPriceTextView1"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
-                        android:layout_weight="9"
                         android:padding="12dp"
-                        android:textColor="#3e3e3e"
-                        android:textSize="14sp" />
+                        android:textSize="14sp"
+                        android:textColor="@color/colorPrimaryText"
+                        android:layout_width="0dp"
+                        android:layout_weight="9"
+                        android:layout_height="wrap_content" />
 
                 </LinearLayout>
-
                 <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:padding="12dp">
-
-                    <ImageView
-                        android:layout_width="0dp"
-                        android:layout_height="44dp"
-                        android:layout_weight="1"
-                        android:src="@drawable/ic_info" />
+                    android:padding="12dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
                     <TextView
                         android:id="@+id/eventDescriptionTextView1"
@@ -197,10 +189,11 @@
                         android:layout_gravity="center_vertical"
                         android:layout_weight="9"
                         android:padding="12dp"
-                        android:textColor="#3e3e3e"
+                        android:textColor="@color/colorPrimaryText"
                         android:textSize="14sp" />
 
                 </LinearLayout>
+
 
 
             </LinearLayout>

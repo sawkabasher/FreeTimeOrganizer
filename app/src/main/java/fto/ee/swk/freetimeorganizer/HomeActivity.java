@@ -9,7 +9,6 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -34,7 +33,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class HomeActivity extends AppCompatActivity {
-    public List<DataAdapter> ListOfdataAdapter;
+    public List<DataObject> listOfdataObject;
     RecyclerView recyclerView;
     private String HTTP_JSON_URL;
     private String baseUrl = "https://fto.ee/api/v1/events/find";
@@ -99,7 +98,7 @@ public class HomeActivity extends AppCompatActivity {
         super.onPostResume();
         loadData();
         HTTP_JSON_URL = baseUrl + datePart + cityPart + genrePart;
-        JSON_HTTP_CALL(HTTP_JSON_URL);
+//        JSON_HTTP_CALL(HTTP_JSON_URL);
         Log.i(TAG, "onPostResume: TRIGGERED ______________________________");
         Log.i(TAG, "HTTP_JSON_URL " + HTTP_JSON_URL);
     }
@@ -119,7 +118,7 @@ public class HomeActivity extends AppCompatActivity {
 
 
         EventDataHold = new ArrayList<>();
-        ListOfdataAdapter = new ArrayList<>();
+        listOfdataObject = new ArrayList<>();
         recyclerView = (RecyclerView) findViewById(R.id.recyclerview1);
         recyclerView.setHasFixedSize(true);
         layoutManagerOfrecyclerView = new LinearLayoutManager(this);
@@ -160,20 +159,20 @@ public class HomeActivity extends AppCompatActivity {
                     Intent intent = new Intent(HomeActivity.this, EventDetailsActivity.class);
                     Bundle b = new Bundle();
                         b.putStringArray("details", new String[]{
-                                ListOfdataAdapter.get(RecyclerViewItemPosition).getEventName(),        // INDEX 0
-                                ListOfdataAdapter.get(RecyclerViewItemPosition).getEventDate(),        // INDEX 1
-                                ListOfdataAdapter.get(RecyclerViewItemPosition).getEventEndDate(),     // INDEX 2
-                                ListOfdataAdapter.get(RecyclerViewItemPosition).getEventTime(),        // INDEX 3
-                                ListOfdataAdapter.get(RecyclerViewItemPosition).getEventLocation(),    // INDEX 4
-                                ListOfdataAdapter.get(RecyclerViewItemPosition).getEventCity(),        // INDEX 5
-                                ListOfdataAdapter.get(RecyclerViewItemPosition).getEventCountry(),     // INDEX 6
-                                ListOfdataAdapter.get(RecyclerViewItemPosition).getEventGenre(),       // INDEX 7
-                                ListOfdataAdapter.get(RecyclerViewItemPosition).getEventInfo(),        // INDEX 8
-                                ListOfdataAdapter.get(RecyclerViewItemPosition).getEventLink(),        // INDEX 9
-                                ListOfdataAdapter.get(RecyclerViewItemPosition).getEventImageURL(),    // INDEX 10
-                                ListOfdataAdapter.get(RecyclerViewItemPosition).getEventPrice(),       // INDEX 11
-                                ListOfdataAdapter.get(RecyclerViewItemPosition).getEventDescription(), // INDEX 12
-                                ListOfdataAdapter.get(RecyclerViewItemPosition).getEventID()           // INDEX 13
+                                listOfdataObject.get(RecyclerViewItemPosition).getEventName(),        // INDEX 0
+                                listOfdataObject.get(RecyclerViewItemPosition).getEventDate(),        // INDEX 1
+                                listOfdataObject.get(RecyclerViewItemPosition).getEventEndDate(),     // INDEX 2
+                                listOfdataObject.get(RecyclerViewItemPosition).getEventTime(),        // INDEX 3
+                                listOfdataObject.get(RecyclerViewItemPosition).getEventLocation(),    // INDEX 4
+                                listOfdataObject.get(RecyclerViewItemPosition).getEventCity(),        // INDEX 5
+                                listOfdataObject.get(RecyclerViewItemPosition).getEventCountry(),     // INDEX 6
+                                listOfdataObject.get(RecyclerViewItemPosition).getEventGenre(),       // INDEX 7
+                                listOfdataObject.get(RecyclerViewItemPosition).getEventInfo(),        // INDEX 8
+                                listOfdataObject.get(RecyclerViewItemPosition).getEventLink(),        // INDEX 9
+                                listOfdataObject.get(RecyclerViewItemPosition).getEventImageURL(),    // INDEX 10
+                                listOfdataObject.get(RecyclerViewItemPosition).getEventPrice(),       // INDEX 11
+                                listOfdataObject.get(RecyclerViewItemPosition).getEventDescription(), // INDEX 12
+                                listOfdataObject.get(RecyclerViewItemPosition).getEventID()           // INDEX 13
                         });
                     intent.putExtras(b);
 
@@ -306,7 +305,7 @@ public class HomeActivity extends AppCompatActivity {
                 new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray response) {
-                        ListOfdataAdapter.clear();
+                        listOfdataObject.clear();
                         EventDataHold.clear();
                         ParseJSonResponse(response);
                     }
@@ -324,41 +323,39 @@ public class HomeActivity extends AppCompatActivity {
 
     public void ParseJSonResponse(JSONArray array) {
         for (int i = 0; i < array.length(); i++) {
-            DataAdapter GetDataAdapter2 = new DataAdapter();
+            DataObject getDataObject2 = new DataObject();
             JSONObject json = null;
             try {
                 json = array.getJSONObject(i);
-                GetDataAdapter2.setEventID(json.getString(Event_Id_JSON));
-                GetDataAdapter2.setEventName(json.getString(Event_Name_JSON));
-                GetDataAdapter2.setEventDate(json.getString(Event_Date_JSON));
-                GetDataAdapter2.setEventEndDate(json.getString(Event_End_Date_JSON));
-                GetDataAdapter2.setEventTime(json.getString(Event_Time_JSON));
-                GetDataAdapter2.setEventLocation(json.getString(Event_Location_JSON));
-                GetDataAdapter2.setEventCity(json.getString(Event_City_JSON));
-                GetDataAdapter2.setEventCountry(json.getString(Event_Country_JSON));
-                GetDataAdapter2.setEventGenre(json.getString(Event_Genre_JSON));
-                GetDataAdapter2.setEventInfo(json.getString(Event_Info_JSON));
-                GetDataAdapter2.setEventLink(json.getString(Event_Link_JSON));
-                GetDataAdapter2.setEventImageURL(json.getString(Image_URL_JSON));
-                GetDataAdapter2.setEventPrice(json.getString(Event_Price_JSON));
-                GetDataAdapter2.setEventDescription(json.getString(Event_Description_JSON));
+                getDataObject2.setEventID(json.getString(Event_Id_JSON));
+                getDataObject2.setEventName(json.getString(Event_Name_JSON));
+                getDataObject2.setEventDate(json.getString(Event_Date_JSON));
+                getDataObject2.setEventEndDate(json.getString(Event_End_Date_JSON));
+                getDataObject2.setEventTime(json.getString(Event_Time_JSON));
+                getDataObject2.setEventLocation(json.getString(Event_Location_JSON));
+                getDataObject2.setEventCity(json.getString(Event_City_JSON));
+                getDataObject2.setEventCountry(json.getString(Event_Country_JSON));
+                getDataObject2.setEventGenre(json.getString(Event_Genre_JSON));
+                getDataObject2.setEventInfo(json.getString(Event_Info_JSON));
+                getDataObject2.setEventLink(json.getString(Event_Link_JSON));
+                getDataObject2.setEventImageURL(json.getString(Image_URL_JSON));
+                getDataObject2.setEventPrice(json.getString(Event_Price_JSON));
+                getDataObject2.setEventDescription(json.getString(Event_Description_JSON));
 
-
-//TODO ВНИМАНИЕ!!!!! КОСТЫЛЬ!!!!!
+                //TODO ВНИМАНИЕ!!!!! КОСТЫЛЬ!!!!!
                 if(json.getString(Image_URL_JSON).equals("null")){
-                    GetDataAdapter2.setEventImageURL("https://pp.userapi.com/c622227/v622227481/ea18/Ac6o0JZhg6k.jpg");
+                    getDataObject2.setEventImageURL("https://fto.ee/logo.png");
                 }
                 else{
-                    GetDataAdapter2.setEventImageURL(json.getString(Image_URL_JSON));
+                    getDataObject2.setEventImageURL(json.getString(Image_URL_JSON));
                 }
 
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-            ListOfdataAdapter.add(GetDataAdapter2);
-//           Log.e("Test_list",  ListOfdataAdapter.get(0).getEventDate());
+            listOfdataObject.add(getDataObject2);
         }
-        recyclerViewadapter = new RecyclerViewAdapter(ListOfdataAdapter, this);
+        recyclerViewadapter = new RecyclerViewAdapter(listOfdataObject, this);
         recyclerView.setAdapter(recyclerViewadapter);
     }
 }
